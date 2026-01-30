@@ -23,12 +23,15 @@ function showSection(sectionId) {
 }
 
 /**
- * Smooth scroll to an element by its ID
+ * Smooth scroll to an element by its ID (accounts for sticky navbar)
  */
 function smoothScroll(elementId) {
     const element = document.getElementById(elementId);
     if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 70;
+        const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementTop - navbarHeight - 16; // small margin
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
 }
 
@@ -401,6 +404,7 @@ function logSessionData() {
     console.log('Username:', sessionStorage.getItem('username'));
     console.log('Login Time:', sessionStorage.getItem('loginTime'));
 }
+
 
 // ===================== MRV SYSTEM NAVIGATION =====================
 /**
