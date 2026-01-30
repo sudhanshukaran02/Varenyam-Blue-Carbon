@@ -401,3 +401,43 @@ function logSessionData() {
     console.log('Username:', sessionStorage.getItem('username'));
     console.log('Login Time:', sessionStorage.getItem('loginTime'));
 }
+
+// ===================== MRV SYSTEM NAVIGATION =====================
+/**
+ * Show a specific MRV page and hide others
+ * Updates active button styling
+ */
+function showMrvPage(pageId) {
+    // Hide all MRV pages
+    const pages = document.querySelectorAll('.mrv-page');
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
+
+    // Show target page
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.classList.add('active');
+    }
+
+    // Update active button styling
+    const buttons = document.querySelectorAll('.mrv-nav-btn');
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Find and mark the clicked button as active
+    const pageMap = {
+        'mrv-page1': 0,
+        'mrv-page2': 1,
+        'mrv-page3': 2,
+        'mrv-page4': 3
+    };
+
+    if (buttons[pageMap[pageId]]) {
+        buttons[pageMap[pageId]].classList.add('active');
+    }
+
+    // Scroll to top of MRV section
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}

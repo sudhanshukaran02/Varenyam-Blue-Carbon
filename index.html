@@ -15,10 +15,10 @@
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="smoothScroll('about-section')">वरेण्यं</a>
+                    <a href="#" class="nav-link" onclick="showSection('home')">वरेण्यं</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="smoothScroll('about-section')">Our System</a>
+                    <a href="#" class="nav-link" onclick="showSection('mrv-system')">Our System</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="smoothScroll('solutions-section')">About us</a>
@@ -43,19 +43,6 @@
                 <div class="hero-illustration">
                     <img class="earth-globe" src="earthimg.png" alt="Sustainable Earth Globe with Wind Turbine">
                 </div>
-            </div>
-        </section>
-
-        <!-- What is Blue Carbon Section -->
-        <section id="about-section" class="info-section">
-            <div class="container">
-                <h2>What is Blue Carbon?</h2>
-                <p>
-                    Blue carbon refers to carbon captured and stored in coastal and marine ecosystems such as mangroves, seagrass meadows, and salt marshes. These ecosystems are among the most carbon-dense habitats on Earth, sequestering carbon at rates up to 40 times faster than terrestrial forests.
-                </p>
-                <p>
-                    Through Varenyam, firms can access verified blue carbon credits, contributing directly to climate action while supporting coastal communities and biodiversity conservation.
-                </p>
             </div>
         </section>
 
@@ -316,6 +303,131 @@
             </div>
         </div>
     </div>
+
+    <!-- ===================== MRV SYSTEM PAGES ===================== -->
+    
+    <!-- MRV System Container -->
+    <div id="mrv-system" class="section">
+        <div class="mrv-nav">
+            <button class="mrv-nav-btn active" onclick="showMrvPage('mrv-page1')">MRV</button>
+            <button class="mrv-nav-btn" onclick="showMrvPage('mrv-page2')">Monitoring</button>
+            <button class="mrv-nav-btn" onclick="showMrvPage('mrv-page3')">Reporting</button>
+            <button class="mrv-nav-btn" onclick="showMrvPage('mrv-page4')">Verification</button>
+            <button class="mrv-back-btn" onclick="showSection('home')">← Back to Home</button>
+        </div>
+
+        <!-- Page 1: MRV (Text Left, Image Right) -->
+        <!-- PAGE 1: MRV -->
+<div id="mrv-page1" class="mrv-page active">
+  <div class="mrv-container">
+    <div class="mrv-text">
+      <h2>Monitoring, Reporting & Verification</h2>
+      <p>
+        Varenyam’s MRV system ensures blue-carbon credits are accurate, transparent,
+        and trusted across global carbon markets.
+      </p>
+
+      <ul class="mrv-features">
+        <li><strong>Monitoring:</strong> Science-based carbon quantification</li>
+        <li><strong>Reporting:</strong> Clear, audit-ready documentation</li>
+        <li><strong>Verification:</strong> Independent third-party validation</li>
+      </ul>
+
+      <p>
+        Our integrated MRV framework makes every credit credible and market-ready.
+      </p>
+    </div>
+
+    <div class="mrv-image">
+      <img src="MRV.jpeg" alt="MRV Framework Visualization" class="mrv-img">
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: Monitoring -->
+<div id="mrv-page2" class="mrv-page">
+  <div class="mrv-container reverse">
+    <div class="mrv-image">
+      <img src="Monitoring.jpeg" alt="Ecosystem Monitoring" class="mrv-img">
+    </div>
+
+    <div class="mrv-text">
+      <h2>Monitoring</h2>
+      <p>
+        We continuously track blue-carbon ecosystems to ensure long-term accuracy
+        and impact.
+      </p>
+
+      <ul class="mrv-features">
+        <li>Satellite & remote sensing data</li>
+        <li>Ground-level field inputs</li>
+        <li>IoT-based environmental sensors</li>
+        <li>AI-driven analytics</li>
+      </ul>
+
+      <p>
+        Key metrics include carbon stock, sequestration rate, and ecosystem health.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3: Reporting -->
+<div id="mrv-page3" class="mrv-page">
+  <div class="mrv-container">
+    <div class="mrv-text">
+      <h2>Transparent Reporting</h2>
+      <p>
+        Varenyam generates structured, compliant reports designed for audits and
+        carbon registries.
+      </p>
+
+      <ul class="mrv-features">
+        <li>Approved measurement methodologies</li>
+        <li>Carbon calculations & summaries</li>
+        <li>Complete data traceability</li>
+        <li>Standards compliance</li>
+      </ul>
+
+      <p>
+        Aligned with ISO 14064, Gold Standard, and VCS frameworks.
+      </p>
+    </div>
+
+    <div class="mrv-image">
+      <img src="Reporting .jpeg" alt="Transparent Reporting" class="mrv-img">
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4: Verification -->
+<div id="mrv-page4" class="mrv-page">
+  <div class="mrv-container reverse">
+    <div class="mrv-image">
+      <img src="verification.jpeg" alt="Independent Verification" class="mrv-img">
+    </div>
+
+    <div class="mrv-text">
+      <h2>Independent Verification</h2>
+      <p>
+        Every project undergoes third-party verification to ensure trust and
+        credibility.
+      </p>
+
+      <ul class="mrv-features">
+        <li>Documentation review</li>
+        <li>Technical validation</li>
+        <li>Field verification</li>
+        <li>Credit certification</li>
+      </ul>
+
+      <p>
+        Verified credits are securely registered for long-term integrity.
+      </p>
+    </div>
+  </div>
+</div>
+
 
     <script src="script.js"></script>
 </body>
