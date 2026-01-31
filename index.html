@@ -24,6 +24,9 @@
                     <a href="#" class="nav-link" onclick="showSection('home'); setTimeout(function(){ smoothScroll('about-section-1'); }, 200);">About us</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="attemptOpenBuyerDashboard()">Buyer Dashboard</a>
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link" onclick="showSection('login-step1')">Login</a>
                 </li>
             </ul>
@@ -133,15 +136,15 @@
                 <h2>Our Impact</h2>
                 <div class="impact-stats">
                     <div class="stat">
-                        <h3>1,000+</h3>
+                        <h3>0000</h3>
                         <p>Tonnes of CO₂ Sequestered</p>
                     </div>
                     <div class="stat">
-                        <h3>50+</h3>
+                        <h3>00</h3>
                         <p>Partner Organizations</p>
                     </div>
                     <div class="stat">
-                        <h3>2,500+</h3>
+                        <h3>00000</h3>
                         <p>Hectares Protected</p>
                     </div>
                 </div>
@@ -186,15 +189,15 @@
                         <figure class="lead-card">
                             <img src="l1.jpeg" alt="Lead 1" />
                             <figcaption>
-                                <h3>Dr. Asha Rao</h3>
-                                <p>Ecology Lead</p>
+                                <h3>Mr. Sudhanshu Karan</h3>
+                                <p>Co-Founder </p>
                             </figcaption>
                         </figure>
                         <figure class="lead-card">
                             <img src="l2.jpeg" alt="Lead 2" />
                             <figcaption>
-                                <h3>Ravi Menon</h3>
-                                <p>Technical Lead</p>
+                                <h3>Mr. Ram Prasad Saw</h3>
+                                <p>Co-Founder</p>
                             </figcaption>
                         </figure>
                     </div>
@@ -355,8 +358,106 @@
                 <p>Your account has been created successfully.</p>
                 <p class="success-details">You are now logged in and can access the blue carbon marketplace.</p>
                 <button class="btn-primary" onclick="showSection('home')">Return to Home</button>
+                <button class="btn-primary" onclick="attemptOpenBuyerDashboard()">Go to Buyer Dashboard</button>
             </div>
         </div>
+    </div>
+
+    <!-- ===================== LOGIN (EXISTING USER) ===================== -->
+    <div id="login" class="section">
+        <div class="auth-container">
+            <div class="auth-box">
+                <h2>Login to your account</h2>
+                <p class="step-info">Enter your credentials to continue</p>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginUsername">Username *</label>
+                        <input type="text" id="loginUsername" name="loginUsername" placeholder="Enter your username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginEmail">Email *</label>
+                        <input type="email" id="loginEmail" name="loginEmail" placeholder="Enter your email for receipts" required>
+                        <span class="error-message" id="loginEmailError" style="display:none;"></span>
+                        <p class="small muted">We'll send a digital certificate to this email after purchase.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Password *</label>
+                        <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="showSection('home')">Back</button>
+                        <button type="submit" id="loginBtn" class="btn-primary">Login</button>
+                    </div>
+                </form>
+                <p class="auth-link">No account yet? <a href="#" onclick="showSection('login-step1')">Verify GST & Create Account</a></p>
+                <p class="error-message" id="loginError" style="display:none;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== BUYER DASHBOARD ===================== -->
+    <div id="buyer-dashboard" class="section">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Buyer Dashboard</h2>
+                <div class="dashboard-actions">
+                    <div class="search-sort">
+                        <input id="productSearch" placeholder="Search credits by name..." />
+                        <select id="productSort">
+                            <option value="popular">Sort: Popular</option>
+                            <option value="price-asc">Price: Low → High</option>
+                            <option value="price-desc">Price: High → Low</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn-secondary" onclick="toggleCartPanel()">
+                            Cart <span id="cartBadge" class="cart-badge">0</span>
+                        </button>
+                        <button class="btn-secondary" onclick="logout()">Logout</button>
+                    </div>
+                </div>
+            </div>
+
+            <section class="marketplace">
+                <h3>Buy Carbon Credits</h3>
+                <div id="productsList" class="products-grid"></div>
+            </section>
+
+            <section class="purchase-history">
+                <h3>Your Purchases</h3>
+                <div id="purchasesList" class="purchases-list"></div>
+            </section>
+        </div>
+
+        <!-- Cart panel -->
+        <aside id="cartPanel" class="cart-panel" aria-hidden="true">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="btn-secondary" onclick="toggleCartPanel()">Close</button>
+            </div>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-footer">
+                <div class="cart-total">Total: <span id="cartTotal">₹0.00</span></div>
+                <button class="btn-primary" onclick="showCheckoutModal()" id="checkoutBtn" disabled>Checkout</button>
+            </div>
+        </aside>
+
+        <!-- Checkout Modal -->
+        <div id="checkoutModal" class="modal" aria-hidden="true">
+            <div class="modal-content">
+                <h3>Checkout</h3>
+                <p id="checkoutSummary"></p>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="closeCheckoutModal()">Cancel</button>
+                    <button class="btn-primary" onclick="confirmCheckout()">Confirm Purchase</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div id="toast" class="toast" style="display:none;"></div>
     </div>
 
     <!-- ===================== MRV SYSTEM PAGES ===================== -->
